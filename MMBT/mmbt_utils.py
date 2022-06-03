@@ -84,7 +84,7 @@ class JsonlDataset(Dataset):
         label_freqs = Counter()
         for row in self.data:
             for i, name in enumerate(label_names):
-                if(self.data[name]):
+                if(row[name]):
                     label_freqs.update(i)
         return label_freqs
 
