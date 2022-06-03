@@ -62,7 +62,7 @@ class JsonlDataset(Dataset):
         if self.n_classes > 2:
             # multiclass
             label = torch.zeros(self.n_classes)
-            label[self.labels.index(self.data[index]["normal"])] = 1
+            label[self.labels.index(self.data[index]["label"])] = 1
         else:
             label = torch.LongTensor([self.labels.index(self.data[index]["label"])])
 
@@ -201,7 +201,6 @@ def load_examples(tokenizer, wandb_config, evaluate=False, test=False, data_dir=
         labels = get_multiclass_labels()
     else:
         labels = get_labels()
-    labels = [[0,1],[0,1],[0,1],[0,1],[0,1],[0,1],[0,1],[0,1]]
 
     dataset = JsonlDataset(path, img_dir, tokenizer, img_transforms, labels, wandb_config.max_seq_length -
                            wandb_config.num_image_embeds - 2)
