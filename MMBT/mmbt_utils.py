@@ -65,7 +65,6 @@ class JsonlDataset(Dataset):
             #label[self.labels.index(self.data[index][label_names])] = 1
             for i in range(self.n_classes):
                 label[i] = self.data[index][label_names[i]]
-            print(label)
         else:
             label = torch.LongTensor([self.labels.index(self.data[index]["label"])])
 
