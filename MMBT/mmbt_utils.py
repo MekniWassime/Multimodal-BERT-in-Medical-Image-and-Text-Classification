@@ -83,8 +83,11 @@ class JsonlDataset(Dataset):
     def get_label_frequencies(self):
         label_freqs = Counter()
         for row in self.data:
-            label_freqs.update([row["label"]])
+            for i, name in enumerate(label_names):
+                if(self.data[name]):
+                    label_freqs.update(i)
         return label_freqs
+
 
 
 def collate_fn(batch):
