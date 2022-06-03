@@ -224,6 +224,6 @@ def get_multiclass_criterion(jsonl_dataset_obj):
     print(f"freqs = {freqs}")
     label_weights = (torch.tensor(freqs, dtype=torch.float) / len(jsonl_dataset_obj)) ** -1
     print(f"label_weights = {label_weights}")
-    loss = nn.MultiLabelSoftMarginLoss(weight=label_weights.cuda())
+    loss = nn.MultiLabelSoftMarginLoss()#weight=label_weights.cuda())
     print(f"done = {loss}")
     return loss
