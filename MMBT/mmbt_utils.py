@@ -62,7 +62,9 @@ class JsonlDataset(Dataset):
         if self.n_classes > 2:
             # multiclass
             label = torch.zeros(self.n_classes)
+            print(label)
             label[self.labels.index(self.data[index]["label"])] = 1
+            print(label)
         else:
             label = torch.LongTensor([self.labels.index(self.data[index]["label"])])
 
