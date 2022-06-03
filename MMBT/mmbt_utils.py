@@ -201,6 +201,7 @@ def load_examples(tokenizer, wandb_config, evaluate=False, test=False, data_dir=
         labels = get_multiclass_labels()
     else:
         labels = get_labels()
+    labels = [[0,1],[0,1],[0,1],[0,1],[0,1],[0,1],[0,1],[0,1]]
 
     dataset = JsonlDataset(path, img_dir, tokenizer, img_transforms, labels, wandb_config.max_seq_length -
                            wandb_config.num_image_embeds - 2)
