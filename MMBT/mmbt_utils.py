@@ -36,7 +36,7 @@ MMBT_DIR_PARENT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(MMBT_DIR_PARENT, "data")
 JSONL_DATA_DIR = os.path.join(DATA_DIR, "json")
 IMG_DATA_DIR = os.path.join(DATA_DIR, "NLMCXR_png_frontal")
-
+label_names = ["normal", "Granuloma", "Cardiomegaly", "Pulmonary Atelectasis", "Calcinosis", "Calcified Granuloma", "Thoracic Vertebrae", "other"]
 
 class JsonlDataset(Dataset):
     def __init__(self, jsonl_data_path, img_dir, tokenizer, transforms, labels, max_seq_length):
@@ -62,7 +62,7 @@ class JsonlDataset(Dataset):
         if self.n_classes > 2:
             # multiclass
             label = torch.zeros(self.n_classes)
-            label[self.labels.index(self.data[index]["label"])] = 1
+            label[self.labels.index(self.data[index][label_names])] = 1
         else:
             label = torch.LongTensor([self.labels.index(self.data[index]["label"])])
 
