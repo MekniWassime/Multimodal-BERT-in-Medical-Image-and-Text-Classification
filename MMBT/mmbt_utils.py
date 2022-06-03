@@ -142,7 +142,7 @@ def get_multiclass_labels():
 
     :return:
     """
-    return [0, 1, 2]
+    return [0, 1, 2, 3, 4, 5, 6, 7]
 
 
 def get_labels():
