@@ -218,7 +218,11 @@ def load_examples(tokenizer, wandb_config, evaluate=False, test=False, data_dir=
 
 
 def get_multiclass_criterion(jsonl_dataset_obj):
+    print("########## get multiclass criterion")
     label_freqs = jsonl_dataset_obj.get_label_frequencies()
+    print(f"label_freqs = {label_freqs}")
     freqs = [label_freqs[label] for label in jsonl_dataset_obj.labels]
+    print(f"freqs = {freqs}")
     label_weights = (torch.tensor(freqs, dtype=torch.float) / len(jsonl_dataset_obj)) ** -1
+    print(f"label_weights = {label_weights}")
     return nn.BCEWithLogitsLoss(pos_weight=label_weights.cuda())
